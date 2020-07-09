@@ -8,10 +8,12 @@ b = input("enter b:")
 c = input("enter c:")
 delta = b*b - 4*a*c
 
-if delta<0:
-	print "false"
-else:
-	x1 = (-b+sqrt(delta))/2*a
-	x2 = (-b-sqrt(delta))/2*a
-
-print x1,x2
+try:
+	if delta<0:
+		raise ValueError("delta under zero")
+	else:
+		x1 = (-b+sqrt(delta))/2*a
+		x2 = (-b-sqrt(delta))/2*a
+		print(x1,x2)
+except ValueError as ex:
+	print(ex)
