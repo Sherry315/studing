@@ -18,11 +18,19 @@ while len(List) != 1:
     index +=index
 """
 def Josephus(n,k):
-    if n ==1:
+    if n == 1:
         return n
-    return Josephus(n - 1, k) + k - 1 % n +1
+    return (Josephus(n - 1, k) + k - 1) % n +1
 
-total_num = int(input("enter total number of people:"))
+number_of_participant = int(input("please input the number of participant:"))
+list_of_participant = []
+for i in range(number_of_participant):
+    name = raw_input("please enter the name of participant:")
+    list_of_participant.append(name)
+    i +=i
+print("names of participants:",list_of_participant)
 kill_num = int(input("enter the kill number:"))
-survivor = Josephus(total_num,kill_num)
-print("survivor number:{}").format(survivor)
+survivor_number = Josephus(number_of_participant,kill_num)
+print("number of the survivor:",survivor_number)
+survivor = list_of_participant[survivor_number - 1]
+print("survivor :{}").format(survivor)
