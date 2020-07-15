@@ -4,7 +4,7 @@
 out_number = 3
 total_number = 10
 for i in range(total_number +1):
-    List[i] = input("input name:")
+    List[i] = raw_input("input name:")
 index = 1
 print(List)
 

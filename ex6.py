@@ -35,7 +35,7 @@ for i in range(total_num)
 	i +=i
 """
 
-test_scores = {"a":82, "b":93, "c":60, "d":98}
+test_scores = {"a":82, "b":93, "c":60, "d":98, "e":98}
 
 average = average_score(test_scores)
 print("the average score is:{}".format(average))
