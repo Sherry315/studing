@@ -1,25 +1,36 @@
 #!/usr/bin/env Python
-# coding=utf-8
+#--coding=utf-8--
 
-def get_info(file_name):
+def get_info(file_name_csv, file_name_zip, file_name_txt):
     from new_class import Person
+    from new_class import reader
+    """
+    csvfile = reader.read_from_csv(file_name_csv)
+    zipfile = reader.read_from_zip(file_name_zip)
+    txtfile = reader.read_from_txt(file_name_txt)
+    """
 
-    personal_information_document = open(file_name)
-    personal_information = []
-    for line in personal_information_document.readline():
-        personal_information.append(line.strip('\n'))
-    personal_information_document.close()
+    csv_reader = reader(file_name_csv)
+    zip_reader = reader(file_name_zip)
+    txt_reader = reader(file_name_txt)
 
-    chart_of_person = []
-    for i in range(len(personal_information)):
-        chart_of_person.append(Person(personal_information[i].split(" "[0]), personal_information[i].split(" "[1]), personal_information[i].split(" "[2])))
+    csvfile = csv_reader.read_from_csv()
+    zipfile = zip_reader.read_from_zip()
+    txtfile = txt_reader.read_from_txt()
+
+    chart_of_person = csvfile + zipfile + txtfile
+
     return chart_of_person
 
 from new_class import Josephus
-file_name = "information.txt"
+file_name_txt = r"F:\吴穹\studing\test.txt"
+file_name_csv = r"‪F:\吴穹\studing\test.csv"
+file_name_zip = r"‪F:\吴穹\studing\test.zip"
 
-people = get_info(file_name)
-josephus = Josephus(start, step, people)
+people = get_info(file_name_csv, file_name_zip, file_name_txt)
+start = 1
+step = 3
+josephus = Josephus(people, start, step)
 print("out:",josephus.pop())
 print("out in order:")
 [x.display() for x in josephus]
