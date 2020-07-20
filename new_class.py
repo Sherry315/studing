@@ -1,6 +1,9 @@
 #!/usr/bin/env Python
 # coding=utf-8
 
+import csv
+import os
+import zipfile       
 
 class Person(object):
     def __init__(self, name, gender, age):
@@ -44,10 +47,6 @@ class Josephus(object):
             raise StopIteration
 
 
-import csv
-import os
-import zipfile       
-
 def create_info_str(str_name):
     chart_of_person = []
     for i in range(len(str_name)):
@@ -55,11 +54,11 @@ def create_info_str(str_name):
     return chart_of_person
 
     
-class reader(object):
+class ZipReader(object):
     def __init__(self, file_path):
         self.file_path = file_path
 
-    def read_from_zip(self):
+    def read(self):
         flag = zipfile.is_zipfile(self.file_path)
         chart_zip =[]
         if flag:
@@ -72,7 +71,11 @@ class reader(object):
             chart_zip = create_info_str(personal_information)
         return chart_zip
 
-    def read_from_txt(self):
+class TxtReader(object):
+    def __init__(self, file_path):
+        self.file_path = file_path
+
+    def read(self):
         flag = os.path.isfile(self.file_path)
         chart_txt = []
         if flag:
@@ -84,7 +87,11 @@ class reader(object):
             chart_txt = create_info_str(document)
             return chart_txt
 
-    def read_from_csv(self):
+class CsvReader(object):
+    def __init__(self, file_path):
+        self.file_path = file_path
+
+    def read(self):
         flag = os.path.isfile(self.file_path)
         chart_csv = []
         if flag:

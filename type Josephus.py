@@ -1,22 +1,26 @@
 #!/usr/bin/env Python
 #--coding=utf-8--
 
+from new_class import Person
+from new_class import CsvReader
+from new_class import TxtReader
+from new_class import ZipReader
+
 def get_info(file_name_csv, file_name_zip, file_name_txt):
-    from new_class import Person
-    from new_class import reader
+    
     """
     csvfile = reader.read_from_csv(file_name_csv)
     zipfile = reader.read_from_zip(file_name_zip)
     txtfile = reader.read_from_txt(file_name_txt)
     """
 
-    csv_reader = reader(file_name_csv)
-    zip_reader = reader(file_name_zip)
-    txt_reader = reader(file_name_txt)
+    csv_reader = CsvReader(file_name_csv)
+    zip_reader = ZipReader(file_name_zip)
+    txt_reader = TxtReader(file_name_txt)
 
-    csvfile = csv_reader.read_from_csv()
-    zipfile = zip_reader.read_from_zip()
-    txtfile = txt_reader.read_from_txt()
+    csvfile = csv_reader.read()
+    zipfile = zip_reader.read()
+    txtfile = txt_reader.read()
 
     chart_of_person = csvfile + zipfile + txtfile
 
